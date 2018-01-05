@@ -1,0 +1,93 @@
+---
+title: "Regression Review"
+author: "Erin Feichtinger"
+date: "January 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction 
+
+My first project at RBC involves the Accredited Wealth Managment Program, or AWM for short, and the return on investment for training financial advisors. The program costs a lot and we want to know if it is worth it, i.e. does RBC get the investment back? I'm not sure how this will be measured, but I suppose that is part of the challenge. 
+
+The first things that we need to know are what the data look like. My initial questions are as follows. 
+
+1. What do the data look like? 
+2. What are the attributes related to each advisor? 
+3. How do we define success?
+  + What is the response in this case? 
+4. Is this supervised or unsupervised? 
+  + Is this a classification or regression problem? Or both?
+
+  
+## Review of Regression
+
+It will be helpful to review and remember basics of regression for this task. This will come from reading Statistical Learning (at least for the moment).
+
+### Topics to review
+
+#### Simple Linear Regression 
+
+
+1. Residual Sum of Squares - RSS
+  + The difference between the predicted y and the actual y
+2. Least Squares approach tries to minimize RSS
+  + Parameter/coefficient estimation using this method 
+
+General form of a model
+Y = f(X) + E
+
+Linear form
+Y = B0 + B1X + E
+
+Population regression line - best linear approximation to the true relationship between X and Y, as defined in text
+PRL is unobserved! But, we use LS to estimate this line
+
+Least squares line - estimation of the true population regression line 
+
+Population and sample means (and var/SD)
+
+*Biased and unbiased estimators
+  + If we had a large enough sample, the average estimate of the mean would equal the true mean (sometimes it will over or underestimate, but if we continually re-sampled, the average of the estimators equals the true mean) 
+  + LS does not systematically over or under-estimated the true parameter, hence, unbiased
+*But how do we know if our estimate of the mean is good? We probably won't have some unlimited number of data sets to estimate a large number of the parameters
+  + Standard error of the mean!!
+  + Var(mu) = SE(mu)^2 = sigma^2 / n
+  + The average deviation of the estimated mean from the true mean 
+  + Remember, can also calculate SE of the coefficients
+*Residual Standard Error
+*Confidence intervals 
+*Frequentist hypothesis testing 
+ + Recall what it actually is: testing if the regression coefficients are significantly different than 0, i.e. there is a relationship between X and Y, if B1 = 0, then there is only an intercept, meaning there is no relationship between X and Y
+ + H0 : B1 = 0
+ + HA : B1 =/ 0
+*t statistic
+  + t = B1 - B0/SE(B1)
+  + Measures the number of standard deviations that B1 is away from 0
+*The p-value
+  + The probability of observing any number equal to |t| or larger **given that B1 = 0**
+
+*Recall what a test statistic is in general
+  + According to Wikipedia, a *test statistic* is "considered as a numerical summary of a data set that reduces the data to one value that can be used to perform the hypothesis test"
+
+*Moving on from hypothesis testing of the coefficients (whether or not B1 = 0), we can then asses the fit of the model in general
+  + Residual Standard Error (RSE) = estimate of the standard deviation of E
+  + R^2 = 1 - RSS/TSS
+  + Correlation r^2
+    + In simple linear regression, R^2 and r^2 are equal 
+
+#### Multiple Regression
+
+Many of the same principles apply, still using least squares regression. One difference is the test statistic used; here, it is the F test/F distribution. 
+
+*The F test statistic accounts for all predictors, so it gives us a much better idea of whether or not to reject the null hypothesis rather than using t stats/p values for each coefficient. 
+*F test appropriate when the number of predictors is small and the sample size is large. 
+
+#### Model Selection 
+
+*Forward selection 
+*Backward selection 
+*Mixed selection
